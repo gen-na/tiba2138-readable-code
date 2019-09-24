@@ -1,7 +1,7 @@
 package jp.justsystems.readablecode;
 
 /**
- * 仕様1：仕様1：単語情報を出力できること
+ * 仕様1：単語情報を出力できること
  */
 public class Dictionary {
 
