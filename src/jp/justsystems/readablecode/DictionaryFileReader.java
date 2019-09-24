@@ -1,6 +1,6 @@
 package jp.justsystems.readablecode;
 
-import com.sun.deploy.util.StringUtils;
+//import com.sun.deploy.util.StringUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class DictionaryFileReader {
      * @param filePath ファイルパス
      */
     public DictionaryFileReader(String filePath) throws IOException, FileNotFoundException {
-        if(!this.exists(filePath)) {
+        if(!FileUtil.exists(filePath)) {
             throw new FileNotFoundException("ファイルが見つかりません");
         }
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(filePath)),"UTF-8"));) {
@@ -43,37 +43,18 @@ public class DictionaryFileReader {
             throw e;
         }
     }
-
-    /**
-     * 引数文字列をチェックする
-     * @param args
-     * @return true;正常、false:異常
-     */
-    private static boolean checkArgs(String args[]) {
-        if (args.length != 1) return false;
-        if (isEmptyStr(args[0])) return false;
-        return true;
-    }
-
-    /**
-     * ファイルの存在確認
-     * @param filePath
-     * @return true;存在、false:存在しない
-     * @throws FileNotFoundException
-     */
-    private static boolean exists(String filePath) {
-        if (isEmptyStr(filePath)) return false;
-        File f = new File(filePath);
-        if (!f.exists()) return false;
-        return true;
-    }
-
-    /**
-     * 文字列の空文字☑
-     * @param str
-     * @return true:空、false:空ではない
-     */
-    private static boolean isEmptyStr(String str) {
-        return str == null || str.trim().length() == 0;
-    }
+    
+	/**
+	 * 引数文字列をチェックする
+	 * 
+	 * @param args
+	 * @return true;正常、false:異常
+	 */
+	static boolean checkArgs(String args[]) {
+		if (args.length != 1)
+			return false;
+		if (FileUtil.isEmptyStr(args[0]))
+			return false;
+		return true;
+	}
 }
